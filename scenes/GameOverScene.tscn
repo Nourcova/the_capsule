@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://cv5y1ai2hl8pv"]
+
+[ext_resource type="Script" uid="uid://bjlsftcfybdgd" path="res://scripts/retryButton.gd" id="1_7kyk7"]
+[ext_resource type="AudioStream" uid="uid://daglxf0xmwx1t" path="res://sounds/gameOver.mp3" id="2_tgqjs"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ilp0c"]
+font_size = 48
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.616
+anchor_right = 0.5
+anchor_bottom = 0.616
+offset_left = -97.5
+offset_top = -20.168
+offset_right = 97.5
+offset_bottom = 19.832
+grow_horizontal = 2
+grow_vertical = 2
+text = "Retry"
+script = ExtResource("1_7kyk7")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.314
+anchor_right = 0.5
+anchor_bottom = 0.314
+offset_left = -130.0
+offset_top = -33.472
+offset_right = 130.0
+offset_bottom = 33.528
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_ilp0c")
+
+[node name="GameOver" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_tgqjs")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

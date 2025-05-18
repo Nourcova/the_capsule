@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://b7l7pomqgdrhp"]
+
+[ext_resource type="Texture2D" uid="uid://dda52crath6ji" path="res://icon.svg" id="1_7k104"]
+[ext_resource type="Script" uid="uid://dgcvle4cc4r8d" path="res://scripts/enemy.gd" id="2_4gyqm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7xaro"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4gyqm"]
+albedo_texture = ExtResource("1_7k104")
+uv1_offset = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_7k104"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qi2p4"]
+size = Vector3(1.05, 1.05, 1.05)
+
+[node name="Enemy" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_7xaro")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_4gyqm")
+mesh = SubResource("BoxMesh_7k104")
+
+[node name="Area3D" type="Area3D" parent="."]
+script = ExtResource("2_4gyqm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_qi2p4")
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]

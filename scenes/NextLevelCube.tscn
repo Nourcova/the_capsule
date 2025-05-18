@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxm4fg3wu4yif"]
+
+[ext_resource type="Script" uid="uid://bmggi1doccgn2" path="res://scripts/level_finish_script.gd" id="1_he4kd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7ld4t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_he4kd"]
+albedo_color = Color(0, 0.698491, 0.650274, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pq2w6"]
+material = SubResource("StandardMaterial3D_he4kd")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_he4kd"]
+size = Vector3(1.05, 1.05, 1.05)
+
+[node name="StaticBody3D" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_7ld4t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_pq2w6")
+
+[node name="Area3D" type="Area3D" parent="."]
+script = ExtResource("1_he4kd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_he4kd")
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]

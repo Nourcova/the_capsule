@@ -1,0 +1,92 @@
+[gd_scene load_steps=6 format=3 uid="uid://2sfvbt6dnyv8"]
+
+[ext_resource type="Script" uid="uid://bmh7lqf1evji0" path="res://scripts/button.gd" id="1_fi3dg"]
+[ext_resource type="AudioStream" uid="uid://ofae66qngvv3" path="res://sounds/game_music.mp3" id="2_y8j05"]
+
+[sub_resource type="GDScript" id="GDScript_rq48i"]
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$MusicTheme.play()
+	
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_gf0cb"]
+font_size = 46
+font_color = Color(0.294016, 0.575293, 0.853776, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rq48i"]
+line_spacing = 7.0
+font_size = 18
+font_color = Color(0.376471, 0.0196078, 0.0196078, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_rq48i")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.979333, 1, 0.38, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -36.5
+offset_right = 36.5
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "My Game"
+label_settings = SubResource("LabelSettings_gf0cb")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -24.5
+offset_right = 100.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+script = ExtResource("1_fi3dg")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.497
+anchor_top = 0.282
+anchor_right = 0.497
+anchor_bottom = 0.282
+offset_left = -168.544
+offset_top = -45.736
+offset_right = 168.456
+offset_bottom = 46.264
+grow_horizontal = 2
+grow_vertical = 2
+text = "Touch the Blue Cube
+Do NOT interact with The Devil (Godot)
+Fall Damage applied"
+label_settings = SubResource("LabelSettings_rq48i")
+
+[node name="MusicTheme" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_y8j05")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
